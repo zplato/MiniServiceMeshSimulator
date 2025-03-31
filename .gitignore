@@ -1,0 +1,41 @@
+# Python cache & compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+*.log
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# Environment variables or secrets
+.env
+
+# IDE files
+.idea/
+.vscode/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+coverage/
+*.cover
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+
+# Docker/PID files (if you expand later)
+*.pid
+
+# Jupyter (if experimenting)
+.ipynb_checkpoints/
+
+# Logs/output
+*.log
+logs/
