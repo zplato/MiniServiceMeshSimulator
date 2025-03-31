@@ -1,0 +1,27 @@
+{
+  "services": [
+    {
+      "name": "service_a",
+      "url": "http://localhost:5001",
+      "enabled": true
+    },
+    {
+      "name": "service_b",
+      "url": "http://localhost:5002",
+      "enabled": true
+    },
+    {
+      "name": "service_c",
+      "url": "http://localhost:5003",
+      "enabled": true
+    }
+  ],
+  "retry": {
+    "max_attempts": 2,
+    "timeout_seconds": 1
+  },
+  "circuit_breaker": {
+    "failure_threshold": 3,
+    "recovery_time_seconds": 10
+  }
+}
