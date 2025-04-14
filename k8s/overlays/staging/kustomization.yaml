@@ -5,5 +5,5 @@ resources:
   - ../../base
   - namespace.yaml
 
-patchesStrategicMerge:
+patches:
   - patches/patch-nginx.yaml
