@@ -4,6 +4,27 @@ set -e # Exit on error
 
 CLUSTER_NAME="miniservice-mesh"
 
+# Help message
+show_help() {
+  echo "Usage: ./start-minikube.sh [OPTIONS]"
+  echo ""
+  echo "Starts a Minikube cluster with optional configuration."
+  echo ""
+  echo "Options:"
+  echo "  -p, --profile NAME   Set a custom Minikube cluster profile name"
+  echo "  -h, --help           Show this help message"
+}
+
+# Parse args
+while [[ "$#" -gt 0 ]]; do
+  case "$1" in
+    -p|--profile) CLUSTER_NAME="$2"; shift ;;
+    -h|--help) show_help; exit 0 ;;
+    *) echo "❌ Unknown option: $1"; show_help; exit 1 ;;
+  esac
+  shift
+done
+
 echo "🔄 Checking if Minikube is already running..."
 
 if ! minikube status --profile "$CLUSTER_NAME" | grep -q "host: Running"; then
