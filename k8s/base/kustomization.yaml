@@ -1,6 +1,5 @@
 namespace: mesh-lab
 resources:
-  - namespace.yaml
   - ingress.yaml
   - flask-app/
   - nginx/
