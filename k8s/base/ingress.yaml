@@ -2,7 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: mesh-ingress
-  namespace: mesh-lab
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -10,10 +9,17 @@ spec:
     - host: mesh.local
       http:
         paths:
-          - path: /
+          - path: /nginx
             pathType: Prefix
             backend:
               service:
                 name: nginx
+                port:
+                  number: 80
+          - path: /flask
+            pathType: Prefix
+            backend:
+              service:
+                name: flask-app
                 port:
                   number: 80

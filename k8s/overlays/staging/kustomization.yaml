@@ -6,4 +6,11 @@ resources:
   - namespace.yaml
 
 patches:
-  - patches/patch-nginx.yaml
+  - path: patches/patch-nginx.yaml
+    target:
+      kind: Deployment
+      name: nginx
+  - path: patches/patch-flask-app.yaml
+    target:
+      kind: Deployment
+      name: flask-app
