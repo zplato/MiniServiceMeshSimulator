@@ -1,0 +1,9 @@
+namespace: mesh-dev
+
+# Include everything in here
+resources:
+  - ../../base
+  - namespace.yaml
+
+patchesStrategicMerge:
+  - patches/patch-nginx.yaml
