@@ -5,6 +5,7 @@ import time
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def handle():
 
@@ -16,7 +17,6 @@ def handle():
 
     if random.random() < 0.2:
         return "Service A failed", 500
-
 
     return "Hello from Service A", 200 # Healthy response
 
