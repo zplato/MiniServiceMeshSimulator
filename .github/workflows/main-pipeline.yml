@@ -13,7 +13,6 @@ on:
 jobs:
   test:
     uses: ./.github/workflows/test-lint.yml
-    continue-on-error: true  # allows it to fail without breaking the pipeline
 
   build:
     needs: test
