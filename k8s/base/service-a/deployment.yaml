@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-app
+  name: service-a
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: flask-app
+      app: service-a
   template:
     metadata:
       labels:
-        app: flask-app
+        app: service-a
     spec:
       containers:
-        - name: flask-app
-          image: flask:latest # TODO: Need to replace this with my actual services image name
+        - name: service-a
+          image: ghcr.io/zplato/miniservice-service_a:latest
           ports:
             - containerPort: 5000
           env:
