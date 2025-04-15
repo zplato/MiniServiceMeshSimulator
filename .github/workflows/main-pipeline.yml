@@ -1,0 +1,24 @@
+# .github/workflows/main-pipeline.yml
+# Parent Workflow file that sequences all the jobs
+name: Main CI Pipeline
+
+# Define rules for when jobs run
+# on push to 'main' or 'PR' to main
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    uses: ./.github/workflows/test-lint.yml
+
+  build:
+    needs: test
+    uses: ./.github/workflows/build-image.yml
+
+  push:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    uses: ./.github/workflows/push-image.yml

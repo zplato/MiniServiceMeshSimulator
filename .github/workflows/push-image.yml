@@ -1,0 +1,30 @@
+# .github/workflows/push-image.yml
+name: Push Docker Images to GHCR
+
+on:
+  workflow_call:
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: [service_a, service_b, service_c]
+
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Log in to GHCR
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    - name: Build image
+      run: |
+        docker build -t ghcr.io/${{ github.repository_owner }}/miniservice-${{ matrix.service }}:latest ./services/${{ matrix.service }}
+
+    - name: Push image
+      run: |
+        docker push ghcr.io/${{ github.repository_owner }}/miniservice-${{ matrix.service }}:latest

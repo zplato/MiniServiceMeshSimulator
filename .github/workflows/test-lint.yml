@@ -1,0 +1,30 @@
+# .github/workflows/test-lint.yml
+name: Test and Lint Services
+
+on:
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: [service_a, service_b, service_c]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      working-directory: services/${{ matrix.service }}
+      run: pip install -r requirements.txt
+
+    - name: Lint code
+      working-directory: services/${{ matrix.service }}
+      run: |
+        pip install flake8
+        flake8 .

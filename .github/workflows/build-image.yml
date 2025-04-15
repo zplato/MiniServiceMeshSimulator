@@ -1,0 +1,19 @@
+# .github/workflows/build-image.yml
+name: Build Docker Images
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: [service_a, service_b, service_c]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build Docker image
+      run: |
+        docker build -t ghcr.io/${{ github.repository_owner }}/miniservice-${{ matrix.service }}:latest ./services/${{ matrix.service }}
